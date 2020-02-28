@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="dist/app.js" defer></script>
+<link href="dist/app.css" rel="stylesheet">
+<link rel="shortcut icon" href="favicon.ico" />
+
+<title>Vue JS Index HTML • Sample</title>
+<div id="app" class="bg-gray-600 p-4 h-screen w-screen" v-bind:style="appStyles">
+    <div class="flex flex-col justify-between border-2 border-white p-2 h-full w-full">
+        <div class="flex justify-between">
+            <a href="https://github.com/PHLAK/vueColorClock" class="text-sm text-white underline">vueColorClock</a>
+
+            <p class="text-sm text-white">
+                A <a href="https://vuejs.org" class="underline">Vue.js</a> clone of
+                <a href="http://thecolourclock.co.uk" class="underline">The Color Clock</a>
+            </p>
+        </div>
+
+        <div class="flex flex-col justify-center items-center inline-block">
+            <div id="clock" class="inline-block font-mono leading-none text-white text-16vw text-center text-shadow-solid whitespace-no-wrap">
+                <template v-if="mode == 'clock'">{{ time }}</template>
+                <template v-if="mode == 'hex'">{{ hex }}</template>
+
+                <div class="flex justify-center">
+                    <button class="bg-white shadow-solid mx-2 w-1/2" title="Clock Mode" v-bind:style="clockButtonStyles" v-on:click="setMode('clock')"></button>
+                    <button class="bg-white shadow-solid mx-2 w-1/2" title="Hex Mode" v-bind:style="hexButtonStyles" v-on:click="setMode('hex')"></button>
+                </div>
+            </div>
+        </div>
+
+        <div class="flex justify-between">
+            <div>
+                <div  class="flex items-center text-sm text-white" v-if="mode == 'clock'">
+                    12H
+                    <input class="toggle" id="time-format" type="checkbox" v-model="timeFormat" true-value="HH:mm:ss" false-value="hh:mm:ss">
+                    <label class="toggle-switch" for="time-format"></label>
+                    24H
+                </div>
+            </div>
+
+            <div class="text-sm text-white">
+                &copy; {{ now.year }}
+                <a href="https://www.xhostcom.com" class="underline">
+                    Paul Anthony McGowan
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
